@@ -9,19 +9,25 @@ package robots.pos_robots;
 public class RobotsExamples {
 
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		
 		//======Create robots' instances
+		
 		//General constructors
-		TapsterRobot tapsterRobot = new TapsterRobot("10.4.20.125");
-		SwipeRobot swipeRobot = new SwipeRobot("10.4.20.125");
-		TapRobot tapRobot = new TapRobot("10.4.20.125");
-		//Or we can specify IP address
-		InsertRobot insertRobot = new InsertRobot("10.4.20.125");
+		TapsterRobot tapsterRobot = new TapsterRobot("10.4.20.124");
+		SwipeRobot swipeRobot = new SwipeRobot("10.4.20.124");
+		TapRobot tapRobot = new TapRobot("10.4.20.86");
+		InsertRobot insertRobot = new InsertRobot("10.4.20.124");
 		//Special "robot" for interaction between robots
-		ComboRobot comboRobot = new ComboRobot("10.4.20.125");
+		ComboRobot comboRobot = new ComboRobot("10.4.20.124");
+		//MobileKioskRobot
+		MobileKioskRobot mobileKioskRobot = new MobileKioskRobot("10.4.20.120");
 		
+		System.out.println(mobileKioskRobot.runJSONScenario(JSONScenarios.DEMO));
+
 		
+		//TESTS
+/*
 		//=====Swipe card from slot #1
 		//Move Tapster robot to save position
 		tapsterRobot.moveToSavePosition1();
@@ -29,7 +35,8 @@ public class RobotsExamples {
 		swipeRobot.swipeCardFromSlot1();
 		//Return Tapster robot to rest position
 		tapsterRobot.moveToRestPosition();
-		/*
+		
+			
 		//=====Insert card from slot #6, enter PIN and return card into slot #6
 		//Move Tapster robot to save position #2
 		tapsterRobot.moveToSavePosition2();
@@ -51,6 +58,14 @@ public class RobotsExamples {
 		//Take card from slot #1, insert into device, wait and return into slot #1
 		insertRobot.insertCardFromSlot1();
 		//Return Tapster robot to rest position
+	    tapsterRobot.moveToRestPosition();
+	    
+	    //Tap card from slot #3
+	    //Move Tapster robot to save position #2
+	    tapsterRobot.moveToSavePosition1();
+	    //Tap
+	    tapRobot.tapCardFromSlot3();
+	    //Return Tapster robot to rest position
 	    tapsterRobot.moveToRestPosition();
 	    
 	    //=====HANDSHAKE
